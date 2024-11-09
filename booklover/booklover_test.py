@@ -8,13 +8,14 @@ class BookLoverTestSuite(unittest.TestCase):
         my_books = BookLover("Hannah", "hannah@virginia.edu", "romance") #initialize
         my_books.add_book("Pride and Prejudice", 4) #add a book
         book = "Pride and Prejudice"
-        self.assertTrue(book in my_books.book_list)
+        self.assertTrue(book in my_books.book_list['book_name'][0])
 
     def test_2_add_book(self):
         # add the same book twice. Test if it's in `book_list` only once.
         my_books = BookLover("Hannah", "hannah@virginia.edu", "romance") #initialize
         my_books.add_book("Pride and Prejudice", 4) #add a book
-        self.assertRaises(ValueError, my_books.add_book("Pride and Prejudice", 4)) #see if adding same book twice throws error
+        with self.assertRaises(ValueError): 
+            (my_books.add_book("Pride and Prejudice", 4)) #see if adding same book twice throws error
                 
     def test_3_has_read(self): 
         # pass a book in the list and test if the answer is `True`.
